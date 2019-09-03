@@ -14,9 +14,9 @@ class UsersController extends Controller
             'except' => ['show', 'create', 'store', 'index']
         ]);
 		
-        $this->middleware('guest', [
+/*         $this->middleware('guest', [
             'only' => ['create']
-        ]);
+        ]); */
     }
 
     public function index()
@@ -35,6 +35,9 @@ class UsersController extends Controller
 	
     public function create()
     {
+		if(Auth::check()){
+			return back();
+		}
         return view('users.create');
     }
 
